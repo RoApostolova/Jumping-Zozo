@@ -5,7 +5,8 @@ using UnityStandardAssets.CrossPlatformInput;
 public class PlayerMovement : MonoBehaviour
 {
     public GameObject Zozo;
-    public GameObject brick;
+    public GameObject brick;  
+    
 
     [SerializeField]
     public SpriteRenderer sprite;
@@ -35,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
 
         MovingCharacter();
         Jump();
+       
         // this.brick.transform.position += direction * speed * Time.deltaTime;
         //#if UNITY_ANDROID
         //        horizontalMovement = CrossPlatformInputManager.GetAxis("Horizontal");
@@ -77,4 +79,6 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+    
+
 }
