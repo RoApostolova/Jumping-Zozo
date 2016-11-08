@@ -31,6 +31,7 @@ public class MangeSpwanBackground : MonoBehaviour {
         if (other.gameObject.name == Zozo.name)
         {
             Destroy(Sky);
+           
         }
     }
 

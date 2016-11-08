@@ -1,12 +1,16 @@
 ﻿using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
+using UnityEngine.UI;
 
 
 public class PlayerMovement : MonoBehaviour
 {
     public GameObject Zozo;
-    public GameObject brick;  
-    
+    public GameObject brick;
+
+    public static int score = 0;        // The player's score.
+    public Text text;
+
 
     [SerializeField]
     public SpriteRenderer sprite;
@@ -21,22 +25,25 @@ public class PlayerMovement : MonoBehaviour
     private float vertical;
     private float speed = 4f;
     private Animator animator;
+    
 
     void Awake()
     {
         // player_0 = GameObject.FindWithTag("Player");
         // brick = GameObject.FindWithTag("Player");
         //direction = (new Vector3(Random.Range(-1.0f, 1.0f), 0.0f, Random.Range(-1.0f, 1.0f))).normalized;
-        this.animator = this.GetComponent<Animator>();
+       this.animator = this.GetComponent<Animator>();
     }
+
 
     void FixedUpdate()
     {
-        this.horizontal = CrossPlatformInputManager.GetAxis("Horizontal");
+      this.horizontal = CrossPlatformInputManager.GetAxis("Horizontal");
 
         MovingCharacter();
         Jump();
-       
+        
+
         // this.brick.transform.position += direction * speed * Time.deltaTime;
         //#if UNITY_ANDROID
         //        horizontalMovement = CrossPlatformInputManager.GetAxis("Horizontal");
@@ -79,6 +86,13 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-    
 
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.name == brick.name)
+        {
+            score += 10;
+            text.text = "score: " + score;
+        }
+    }
 }
