@@ -29,10 +29,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Awake()
     {
-        // player_0 = GameObject.FindWithTag("Player");
-        // brick = GameObject.FindWithTag("Player");
-        //direction = (new Vector3(Random.Range(-1.0f, 1.0f), 0.0f, Random.Range(-1.0f, 1.0f))).normalized;
-       this.animator = this.GetComponent<Animator>();
+     this.animator = this.GetComponent<Animator>();
     }
 
 
@@ -63,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
        if (horizontal == 0)
         {
             this.animator.SetTrigger("Idle");
-            
+
         }
 
        if (horizontal < 0)
