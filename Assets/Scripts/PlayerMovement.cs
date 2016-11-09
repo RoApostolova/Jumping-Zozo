@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public static int score = 0;
     public static int highscore = 0;
     public Text text;
+    public Text highscoreText;
 
 
     [SerializeField]
@@ -33,6 +34,11 @@ public class PlayerMovement : MonoBehaviour
         
         score = PlayerPrefs.GetInt("score");
         this.animator = this.GetComponent<Animator>();
+    }
+
+    void Start()
+    {
+        this.highscoreText.text = "highscore:" + score;
     }
 
 
@@ -91,9 +97,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.name == brick.name)
         {
-            score += 10;
+            
             PlayerPrefs.SetInt("score",score);
             PlayerPrefs.Save();
+            score += 10;
             text.text = "score: " + score;
         }
     }
