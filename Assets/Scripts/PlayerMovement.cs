@@ -8,7 +8,8 @@ public class PlayerMovement : MonoBehaviour
     public GameObject Zozo;
     public GameObject brick;
 
-    public static int score = 0;        // The player's score.
+    public static int score = 0;
+    public static int highscore = 0;
     public Text text;
 
 
@@ -29,7 +30,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Awake()
     {
-     this.animator = this.GetComponent<Animator>();
+        
+        score = PlayerPrefs.GetInt("score");
+        this.animator = this.GetComponent<Animator>();
     }
 
 
@@ -89,6 +92,8 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.name == brick.name)
         {
             score += 10;
+            PlayerPrefs.SetInt("score",score);
+            PlayerPrefs.Save();
             text.text = "score: " + score;
         }
     }
