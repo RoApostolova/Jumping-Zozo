@@ -6,12 +6,12 @@ using UnityEngine.UI;
 public class PlayerMovement : MonoBehaviour
 {
     public GameObject Zozo;
-    public GameObject brick;
+    public GameObject[] brick;
 
     public static int score = 0;
     public static int highscore = 0;
     public Text text;
-    public Text highscoreText;
+    
 
 
     [SerializeField]
@@ -31,14 +31,14 @@ public class PlayerMovement : MonoBehaviour
 
     void Awake()
     {
-        
+
         score = PlayerPrefs.GetInt("score");
         this.animator = this.GetComponent<Animator>();
     }
 
     void Start()
     {
-        this.highscoreText.text = "highscore:" + score;
+       
     }
 
 
@@ -95,13 +95,17 @@ public class PlayerMovement : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.name == brick.name)
+        if (other.gameObject.name == brick[0].name || other.gameObject.name == brick[1].name || other.gameObject.name == brick[2].name)
         {
+
             
+            
+
+            score += 10;
             PlayerPrefs.SetInt("score",score);
             PlayerPrefs.Save();
-            score += 10;
             text.text = "score: " + score;
         }
+        
     }
 }
